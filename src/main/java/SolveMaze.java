@@ -1,4 +1,5 @@
-import edu.illinois.cs.cs125.lib.mazemaker.Maze;
+import mazemaker.Maze;
+import java.util.Random;
 
 /**
  * Solve a randomly-generated maze.
@@ -33,8 +34,21 @@ public class SolveMaze {
          * You should be able to solve a 10 x 10 maze in (far fewer than) 1000 steps.
          * Feel free to adjust this number if you experiment with other mazes.
          */
+        Random rand = new Random();
         for (int step = 0; step < 1000; step++) {
             // Implement your maze solving algorithm here
+                int turnDeterminer = rand.nextInt(100) + 1;
+                if (!maze.isFinished()) {
+                    if (!maze.canMove()) {
+                        if(turnDeterminer >= 50){
+                            maze.turnRight();
+                        } else {
+                            maze.turnLeft();
+                        }
+                    } else {
+                        maze.move();
+                    }
+                }
         }
 
         if (maze.isFinished()) {
